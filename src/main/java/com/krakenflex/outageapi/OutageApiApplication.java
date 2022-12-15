@@ -9,5 +9,4 @@ public class OutageApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OutageApiApplication.class, args);
 	}
-
 }
