@@ -1,25 +1,19 @@
 package com.krakenflex.outageapi;
 
-import com.krakenflex.outageapi.domain.Outage;
-import com.krakenflex.outageapi.domain.SiteInfo;
-import com.krakenflex.outageapi.repository.OutageRepository;
-import com.krakenflex.outageapi.repository.SiteInfoRepository;
+import com.krakenflex.outageapi.services.SiteOutageMonitoringService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.time.Instant;
 
 @Component
 public class CommandLineStartupRunner implements CommandLineRunner {
-  @Autowired private OutageRepository outageRepository;
-  @Autowired private SiteInfoRepository siteInfoRepository;
+  @Autowired private SiteOutageMonitoringService siteOutageMonitoringService;
 
   @Override
-  public void run(String... args) throws Exception {
-    List<Outage> outages = outageRepository.getOutages();
-    outages.stream().forEach(System.out::println);
-    SiteInfo siteInfo = siteInfoRepository.getSiteInfo("norwich-pear-tree").get();
-    System.out.println(siteInfo);
+  public void run(String... args) {
+    siteOutageMonitoringService.checkSite(
+        "norwich-pear-tree", Instant.parse("2022-01-01T00:00:00.000Z"));
   }
 }
