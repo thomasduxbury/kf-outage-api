@@ -59,9 +59,6 @@ public class SiteOutageMonitoringService {
       }
     }
 
-    for (EnhancedOutage enhancedOutage : enhancedOutages) {
-      System.out.println(enhancedOutage);
-    }
     try {
       siteOutageHttpService.postSiteOutages(siteId, enhancedOutages);
       log.info("Successfully posted enhanced outage info");
