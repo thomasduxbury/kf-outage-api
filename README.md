@@ -32,7 +32,7 @@ The tool will launch on port 8080.
 
 * Project structured by layer rather than by feature, but I think structuring by feature would also work for a project of this nature
 * API Key could be encrypted if it were to remain in the .properties file, alternatively, it could be an environment variable/Kubernetes secret
-* The filtering algorithm could be optimised as there's no need to iterate over  device outages that have already been matched 
+* The filtering algorithm could be optimised as there's no need to iterate over device outages that have already been matched against a device id 
 * Initially started with one Repository class per domain (SiteInfo, Outage, EnhancedSiteInfo), but it felt better to put them all into a single HTTP service class. This could be refactored if more functionality was to be added
 * Unit tests need to cover more scenarios (HTTP errors, etc), but I hope I've demonstrated various different testing techniques
 * The error handling is a little verbose; I also wasn't too sure what should be implemented in terms of resiliency against 500 responses. I've added functionality to catch 500 responses which would allow dealing with them as required (eg. retrying).
