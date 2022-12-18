@@ -1,6 +1,6 @@
 package com.krakenflex.outageapi.exceptions;
 
-import com.krakenflex.outageapi.domain.HttpException;
+import com.krakenflex.outageapi.domain.HttpResponseDetails;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +12,8 @@ public class HttpResponseExceptionTest {
   @DisplayName(
       "Exception should contain a HttpException and a message explaining what the response code and response message was")
   void shouldContainHttpExceptionWithRelevantMessage() {
-    HttpException httpException = new HttpException(200, "Success!");
-    HttpResponseException exception = new HttpResponseException(httpException);
+    HttpResponseDetails httpResponseDetails = new HttpResponseDetails(200, "Success!");
+    HttpResponseException exception = new HttpResponseException(httpResponseDetails);
     assertEquals("API returned HTTP code 200 with message: Success!", exception.getMessage());
   }
 }

@@ -1,20 +1,20 @@
 package com.krakenflex.outageapi.exceptions;
 
-import com.krakenflex.outageapi.domain.HttpException;
+import com.krakenflex.outageapi.domain.HttpResponseDetails;
 
 public class HttpResponseException extends Exception {
-  private final HttpException httpException;
+  private final HttpResponseDetails httpResponseDetails;
 
-  public HttpResponseException(HttpException httpException) {
+  public HttpResponseException(HttpResponseDetails httpResponseDetails) {
     super(
         "API returned HTTP code "
-            + httpException.statusCode()
+            + httpResponseDetails.statusCode()
             + " with message: "
-            + httpException.message());
-    this.httpException = httpException;
+            + httpResponseDetails.message());
+    this.httpResponseDetails = httpResponseDetails;
   }
 
-  public HttpException getHttpException() {
-    return httpException;
+  public HttpResponseDetails getHttpException() {
+    return httpResponseDetails;
   }
 }

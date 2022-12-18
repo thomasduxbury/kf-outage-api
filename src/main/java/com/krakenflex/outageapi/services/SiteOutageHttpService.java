@@ -3,7 +3,7 @@ package com.krakenflex.outageapi.services;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.krakenflex.outageapi.domain.EnhancedOutage;
-import com.krakenflex.outageapi.domain.HttpException;
+import com.krakenflex.outageapi.domain.HttpResponseDetails;
 import com.krakenflex.outageapi.domain.Outage;
 import com.krakenflex.outageapi.domain.SiteInfo;
 import com.krakenflex.outageapi.exceptions.HttpResponseException;
@@ -57,7 +57,7 @@ public class SiteOutageHttpService {
     if (res.statusCode() == 200) {
       return new Gson().fromJson(res.body(), listType);
     } else {
-      throw new HttpResponseException(new HttpException(res.statusCode(), res.body()));
+      throw new HttpResponseException(new HttpResponseDetails(res.statusCode(), res.body()));
     }
   }
 
@@ -78,7 +78,7 @@ public class SiteOutageHttpService {
     if (res.statusCode() == 200) {
       return Optional.ofNullable(new Gson().fromJson(res.body(), SiteInfo.class));
     } else {
-      throw new HttpResponseException(new HttpException(res.statusCode(), res.body()));
+      throw new HttpResponseException(new HttpResponseDetails(res.statusCode(), res.body()));
     }
   }
 
@@ -95,7 +95,7 @@ public class SiteOutageHttpService {
     try {
       HttpResponse<String> res = httpClient.send(req, HttpResponse.BodyHandlers.ofString());
       if (res.statusCode() != 200) {
-        throw new HttpResponseException(new HttpException(res.statusCode(), res.body()));
+        throw new HttpResponseException(new HttpResponseDetails(res.statusCode(), res.body()));
       }
     } catch (IOException | InterruptedException e) {
       throw new RuntimeException(e);
