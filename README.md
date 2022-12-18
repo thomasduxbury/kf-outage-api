@@ -36,4 +36,5 @@ The tool will launch on port 8080.
 * Initially started with one Repository class per domain (*SiteInfo*, *Outage*, *EnhancedSiteInfo*), but it felt better to put them all into a single HTTP service class. This could be refactored if more functionality was to be added (e.g. if there was a new non-HTTP data source, like a database)
 * Unit tests need to cover more scenarios (HTTP errors, etc), but I hope I've demonstrated various different testing techniques
 * The error handling is a little verbose. I also wasn't too sure what should be implemented in terms of resiliency against 500 responses. I've added functionality to catch 500 responses which would allow dealing with them as required, like retrying
-* I've realised I prefer the functional style of error handling in terms of always returning a value from a method (*Either* type in Scala) and pattern matching against it. I think the error handling I've added could be tidied up a little.
+* I've realised I prefer the functional style of error handling in terms of always returning a value from a method (*Either* type in Scala) and pattern matching against it. I think the error handling I've added could be tidied up a little
+* The CommandLineRunner will start when running the tests when it shouldn't do. This should be stopped by the introduction profiles
