@@ -4,11 +4,11 @@
 A tool that enables the discovery of site device outages and posts them to an API.
 
 # Info
-When running the app, a CommandLineRunner will automatically begin execution by checking the site "norwich-pear-tree".
+When running the app, a *CommandLineRunner* will automatically begin execution by checking the site "norwich-pear-tree".
 
 An end point /monitor-site/{siteId} is also exposed which allows a site of your choosing to be checked by issuing a POST request. 
 
-Additionally, a request param 'validOutageStart' can be passed to this end point to customise filtering of the outage start date (e.g. "2022-01-01T00:00:00.000Z").
+Additionally, a request param *validOutageStart* can be passed to this end point to customise filtering of the outage start date (e.g. "2022-01-01T00:00:00.000Z").
 
 The tool will launch on port 8080.
 
