@@ -8,7 +8,7 @@ import java.net.http.HttpClient;
 @Configuration
 public class SpringConfig {
   @Bean
-  public HttpClient httpClient() {
+  HttpClient httpClient() {
     return HttpClient.newBuilder().build();
   }
 }

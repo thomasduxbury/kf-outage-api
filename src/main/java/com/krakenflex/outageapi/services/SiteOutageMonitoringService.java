@@ -47,18 +47,8 @@ public class SiteOutageMonitoringService {
       }
       return;
     }
-
-    List<EnhancedOutage> enhancedOutages = new ArrayList<>();
-    for (Device device : siteInfo.devices()) {
-      for (Outage outage : outages) {
-        if (outage.id().equals(device.id())
-            && isValidOutageBegin(Instant.parse(outage.begin()), validOutageStart)) {
-          enhancedOutages.add(
-              new EnhancedOutage(outage.id(), device.name(), outage.begin(), outage.end()));
-        }
-      }
-    }
-
+    List<EnhancedOutage> enhancedOutages =
+        filterValidSitesIntoEnhancedOutage(siteInfo, outages, validOutageStart);
     try {
       siteOutageHttpService.postSiteOutages(siteId, enhancedOutages);
       log.info("Successfully posted enhanced outage info");
@@ -69,6 +59,21 @@ public class SiteOutageMonitoringService {
         log.warn(e.getMessage());
       }
     }
+  }
+
+  List<EnhancedOutage> filterValidSitesIntoEnhancedOutage(
+      SiteInfo siteInfo, List<Outage> outages, Instant validOutageStart) {
+    List<EnhancedOutage> enhancedOutages = new ArrayList<>();
+    for (Device device : siteInfo.devices()) {
+      for (Outage outage : outages) {
+        if (outage.id().equals(device.id())
+            && isValidOutageBegin(Instant.parse(outage.begin()), validOutageStart)) {
+          enhancedOutages.add(
+              new EnhancedOutage(outage.id(), device.name(), outage.begin(), outage.end()));
+        }
+      }
+    }
+    return enhancedOutages;
   }
 
   private boolean isValidOutageBegin(Instant begin, Instant validOutageStart) {

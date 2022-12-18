@@ -86,7 +86,6 @@ public class SiteOutageHttpService {
       throws HttpResponseException {
     log.info("Posting Sites Outages for site {}", siteId);
     String json = new Gson().toJson(enhancedOutages);
-    System.out.println(json);
     HttpRequest req =
         HttpRequest.newBuilder()
             .POST(HttpRequest.BodyPublishers.ofString(json))
