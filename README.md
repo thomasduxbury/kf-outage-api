@@ -37,4 +37,5 @@ The tool will launch on port 8080.
 * Unit tests need to cover more scenarios (HTTP errors, etc), but I hope I've demonstrated various different testing techniques
 * The error handling is a little verbose. I also wasn't too sure what should be implemented in terms of resiliency against 500 responses. I've added functionality to catch 500 responses which would allow dealing with them as required, like retrying
 * I've realised I prefer the functional style of error handling in terms of always returning a value from a method (*Either* type in Scala) and pattern matching against it. I think the error handling I've added could be tidied up a little
+* The Controller I've set up is a little basic - it was more of an afterthought of an interesting way to check for any site and different valid start dates
 * The CommandLineRunner will start when running the tests when it shouldn't do. This should be stopped by the introduction profiles
